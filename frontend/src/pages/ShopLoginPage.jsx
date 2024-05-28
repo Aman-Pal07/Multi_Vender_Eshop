@@ -1,4 +1,21 @@
+import { useNavigate } from "react-router-dom";
+import ShopLogin from "../components/Shop/ShopLogin";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+
 const ShopLoginPage = () => {
-  return <div>ShopLoginPage</div>;
+  const navigate = useNavigate();
+  const { isSeller, seller } = useSelector((state) => state.seller);
+
+  useEffect(() => {
+    if (isSeller === true) {
+      navigate(`/shop/${seller._id}`);
+    }
+  }, []);
+  return (
+    <div>
+      <ShopLogin />
+    </div>
+  );
 };
 export default ShopLoginPage;

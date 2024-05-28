@@ -1,12 +1,12 @@
 const express = require("express");
 const path = require("path");
 const User = require("../model/user");
+const router = express.Router();
 const { upload } = require("../multer");
 const ErrorHandler = require("../utils/ErrorHandler");
-const jwt = require("jsonwebtoken");
-const router = express.Router();
-const fs = require("fs");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const fs = require("fs");
+const jwt = require("jsonwebtoken");
 const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
 const { isAuthenticated } = require("../middleware/auth");
@@ -25,21 +25,22 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
           res.status(500).json({ message: "Error deleting file" });
         }
       });
-
       return next(new ErrorHandler("User already exists", 400));
     }
 
     const filename = req.file.filename;
     const fileUrl = path.join(filename);
+
     const user = {
       name: name,
       email: email,
       password: password,
       avatar: fileUrl,
     };
+
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `http://localhost:5173/activation/${activationToken}`;
+    const activationUrl = `http://localhost:3000/activation/${activationToken}`;
 
     try {
       await sendMail({
@@ -65,6 +66,7 @@ const createActivationToken = (user) => {
     expiresIn: "5m",
   });
 };
+
 // activate user
 router.post(
   "/activation",
@@ -100,6 +102,7 @@ router.post(
     }
   })
 );
+
 // login user
 router.post(
   "/login-user",
@@ -147,6 +150,25 @@ router.get(
       res.status(200).json({
         success: true,
         user,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// log out user
+router.get(
+  "/logout",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      res.cookie("token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+      });
+      res.status(201).json({
+        success: true,
+        message: "Log out successful!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
