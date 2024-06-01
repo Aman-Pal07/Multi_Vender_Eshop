@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
+import { motion } from "framer-motion";
 import { categoriesData, productData } from "../../static/data";
 import {
   AiOutlineHeart,
@@ -72,7 +73,12 @@ const Header = ({ activeHeading }) => {
               className="absolute right-2 top-1.5 cursor-pointer"
             />
             {searchData && searchData.length !== 0 ? (
-              <div className="absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-[9] p-4">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-[9] p-4"
+              >
                 {searchData &&
                   searchData.map((i, index) => {
                     const d = i.name;
@@ -91,7 +97,7 @@ const Header = ({ activeHeading }) => {
                       </Link>
                     );
                   })}
-              </div>
+              </motion.div>
             ) : null}
           </div>
 
@@ -167,19 +173,19 @@ const Header = ({ activeHeading }) => {
               </div>
             </div>
 
-            <div className={`${styles.noramlFlex}`}>
-              <div className="relative cursor-pointer mr-[15px]">
+            <div className={styles.normalFlex}>
+              <div className="relative cursor-pointer mr-4">
                 {isAuthenticated ? (
                   <Link to="/profile">
                     <img
                       src={`${backend_url}${user.avatar}`}
-                      className="w-[35px] h-[35px] rounded-full"
-                      alt=""
+                      className="w-9 h-9 rounded-full object-cover border-2 border-gray-300 shadow-md"
+                      alt="Profile"
                     />
                   </Link>
                 ) : (
                   <Link to="/login">
-                    <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
+                    <CgProfile size={30} className="text-white opacity-80" />
                   </Link>
                 )}
               </div>
