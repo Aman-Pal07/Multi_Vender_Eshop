@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
-import { motion } from "framer-motion";
 import { categoriesData, productData } from "../../static/data";
 import {
   AiOutlineHeart,
@@ -21,6 +20,7 @@ import { RxCross1 } from "react-icons/rx";
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { allProducts } = useSelector((state) => state.products);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
@@ -33,9 +33,11 @@ const Header = ({ activeHeading }) => {
     const term = e.target.value;
     setSearchTerm(term);
 
-    const filteredProducts = productData.filter((product) =>
-      product.name.toLowerCase().includes(term.toLowerCase())
-    );
+    const filteredProducts =
+      allProducts &&
+      allProducts.filter((product) =>
+        product.name.toLowerCase().includes(term.toLowerCase())
+      );
     setSearchData(filteredProducts);
   };
 
@@ -73,22 +75,17 @@ const Header = ({ activeHeading }) => {
               className="absolute right-2 top-1.5 cursor-pointer"
             />
             {searchData && searchData.length !== 0 ? (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-[9] p-4"
-              >
+              <div className="absolute min-h-[30vh] bg-slate-50 shadow-sm-2 z-[9] p-4">
                 {searchData &&
                   searchData.map((i, index) => {
                     const d = i.name;
 
                     const Product_name = d.replace(/\s+/g, "-");
                     return (
-                      <Link key={index} to={`/product/${Product_name}`}>
+                      <Link to={`/product/${Product_name}`} key={index}>
                         <div className="w-full flex items-start-py-3">
                           <img
-                            src={i.image_Url[0].url}
+                            src={`${backend_url}${i.images[0]}`}
                             alt=""
                             className="w-[40px] h-[40px] mr-[10px]"
                           />
@@ -97,7 +94,7 @@ const Header = ({ activeHeading }) => {
                       </Link>
                     );
                   })}
-              </motion.div>
+              </div>
             ) : null}
           </div>
 
@@ -173,19 +170,19 @@ const Header = ({ activeHeading }) => {
               </div>
             </div>
 
-            <div className={styles.normalFlex}>
-              <div className="relative cursor-pointer mr-4">
+            <div className={`${styles.noramlFlex}`}>
+              <div className="relative cursor-pointer mr-[15px]">
                 {isAuthenticated ? (
                   <Link to="/profile">
                     <img
                       src={`${backend_url}${user.avatar}`}
-                      className="w-9 h-9 rounded-full object-cover border-2 border-gray-300 shadow-md"
-                      alt="Profile"
+                      className="w-[35px] h-[35px] rounded-full object-cover"
+                      alt=""
                     />
                   </Link>
                 ) : (
                   <Link to="/login">
-                    <CgProfile size={30} className="text-white opacity-80" />
+                    <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
                   </Link>
                 )}
               </div>
@@ -268,12 +265,12 @@ const Header = ({ activeHeading }) => {
                 />
                 {searchData && (
                   <div className="absolute bg-[#fff] z-10 shadow w-full left-0 p-3">
-                    {searchData.map((i, index) => {
+                    {searchData.map((i) => {
                       const d = i.name;
 
                       const Product_name = d.replace(/\s+/g, "-");
                       return (
-                        <Link key={index} to={`/product/${Product_name}`}>
+                        <Link to={`/product/${Product_name}`} key={i.name}>
                           <div className="flex items-center">
                             <img
                               src={i.image_Url[0].url}
@@ -308,7 +305,7 @@ const Header = ({ activeHeading }) => {
                       <img
                         src={`${backend_url}${user.avatar}`}
                         alt=""
-                        className="w-[60px] h-[60px] rounded-full border-[3px] border-[#0eae88]"
+                        className="w-[60px] h-[60px] rounded-full border-[3px] border-[#0eae88] object-cover"
                       />
                     </Link>
                   </div>

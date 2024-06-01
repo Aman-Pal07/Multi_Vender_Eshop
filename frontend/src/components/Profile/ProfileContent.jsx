@@ -21,12 +21,13 @@ const ProfileContent = ({ active }) => {
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   return (
     <div className="w-full">
+      {/* profile */}
       {active === 1 && (
         <>
           <div className="flex justify-center w-full">
@@ -37,10 +38,7 @@ const ProfileContent = ({ active }) => {
                 alt=""
               />
               <div className="w-[30px] h-[30px] bg-[#E3E9EE] rounded-full flex items-center justify-center cursor-pointer absolute bottom-[5px] right-[5px]">
-                <input type="file" id="image" className="hidden" />
-                <label htmlFor="image">
-                  <AiOutlineCamera />
-                </label>
+                <AiOutlineCamera />
               </div>
             </div>
           </div>
@@ -83,7 +81,7 @@ const ProfileContent = ({ active }) => {
                   />
                 </div>
                 <div className=" w-[100%] 800px:w-[50%]">
-                  <label className="block pb-2">Zip code</label>
+                  <label className="block pb-2">Zip Code</label>
                   <input
                     type="number"
                     className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
@@ -99,7 +97,7 @@ const ProfileContent = ({ active }) => {
                   <label className="block pb-2">Address 1</label>
                   <input
                     type="address"
-                    className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+                    className={`${styles.input} !w-[95%]`}
                     required
                     value={address1}
                     onChange={(e) => setAddress1(e.target.value)}
@@ -109,7 +107,7 @@ const ProfileContent = ({ active }) => {
                   <label className="block pb-2">Address 2</label>
                   <input
                     type="address"
-                    className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+                    className={`${styles.input} !w-[95%]`}
                     required
                     value={address2}
                     onChange={(e) => setAddress2(e.target.value)}
@@ -127,27 +125,28 @@ const ProfileContent = ({ active }) => {
         </>
       )}
 
-      {/* order page */}
+      {/* order */}
       {active === 2 && (
         <div>
           <AllOrders />
         </div>
       )}
 
-      {/* refund page */}
+      {/* Refund */}
       {active === 3 && (
         <div>
           <AllRefundOrders />
         </div>
       )}
 
-      {/* track page */}
+      {/* Track order */}
       {active === 5 && (
         <div>
           <TrackOrder />
         </div>
       )}
 
+      {/* Track order */}
       {active === 6 && (
         <div>
           <PaymentMethod />
@@ -497,5 +496,4 @@ const Address = () => {
     </div>
   );
 };
-
 export default ProfileContent;

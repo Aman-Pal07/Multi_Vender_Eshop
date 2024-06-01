@@ -1,11 +1,12 @@
-import Events from "../components/Events/Events";
-import Footer from "../components/Layout/Footer";
+import React from "react";
 import Header from "../components/Layout/Header";
-import BestDeals from "../components/Route/BeastDeals/BestDeals";
+import Hero from "../components/Route/Hero/Hero";
 import Categories from "../components/Route/Categories/Categories";
 import FeaturedProduct from "../components/Route/FeaturedProduct/FeaturedProduct";
-import Hero from "../components/Route/Hero/Hero";
+import Events from "../components/Events/Events";
 import Sponsored from "../components/Route/Sponsored";
+import Footer from "../components/Layout/Footer";
+import BestDeals from "../components/Route/BeastDeals/BestDeals";
 
 const HomePage = () => {
   return (
@@ -21,4 +22,5 @@ const HomePage = () => {
     </div>
   );
 };
+
 export default HomePage;

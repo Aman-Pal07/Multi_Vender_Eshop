@@ -12,7 +12,6 @@ const ShopCreatePage = () => {
       navigate(`/shop/${seller._id}`);
     }
   }, []);
-
   return (
     <div>
       <ShopCreate />

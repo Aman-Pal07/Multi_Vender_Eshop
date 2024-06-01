@@ -44,7 +44,7 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
 
     const activationToken = createActivationToken(seller);
 
-    const activationUrl = `http://localhost:5173/seller/activation/${activationToken}`;
+    const activationUrl = `http://localhost:3000/seller/activation/${activationToken}`;
 
     try {
       await sendMail({
@@ -166,6 +166,7 @@ router.get(
   })
 );
 
+// log out from shop
 router.get(
   "/logout",
   catchAsyncErrors(async (req, res, next) => {
@@ -177,6 +178,22 @@ router.get(
       res.status(201).json({
         success: true,
         message: "Log out successful!",
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// get shop info
+router.get(
+  "/get-shop-info/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const shop = await Shop.findById(req.params.id);
+      res.status(201).json({
+        success: true,
+        shop,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));

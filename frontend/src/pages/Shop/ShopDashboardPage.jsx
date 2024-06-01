@@ -1,3 +1,4 @@
+import React from "react";
 import DashboardHeader from "../../components/Shop/Layout/DashboardHeader";
 import DashboardSideBar from "../../components/Shop/Layout/DashboardSideBar";
 
@@ -13,4 +14,5 @@ const ShopDashboardPage = () => {
     </div>
   );
 };
+
 export default ShopDashboardPage;

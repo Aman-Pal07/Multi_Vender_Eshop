@@ -17,14 +17,14 @@ const productSchema = new mongoose.Schema({
     type: String,
   },
   originalPrice: {
-    type: String,
+    type: Number,
   },
   discountPrice: {
-    type: String,
-    required: [true, "Please enter your product discountPrice!"],
+    type: Number,
+    required: [true, "Please enter your product price!"],
   },
   stock: {
-    type: String,
+    type: Number,
     required: [true, "Please enter your product stock!"],
   },
   images: [
