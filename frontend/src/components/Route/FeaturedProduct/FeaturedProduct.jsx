@@ -4,8 +4,8 @@ import styles from "../../../styles/styles";
 import ProductCard from "../ProductCard/ProductCard";
 
 const FeaturedProduct = () => {
-  const { allProducts } = useSelector((state) => state.products);
-
+  const {allProducts} = useSelector((state) => state.products);
+   
   return (
     <div>
       <div className={`${styles.section}`}>
