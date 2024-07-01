@@ -193,7 +193,8 @@ router.put(
         product.sold_out -= qty;
 
         await product.save({ validateBeforeSave: false });
-      }
+      };
+
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }

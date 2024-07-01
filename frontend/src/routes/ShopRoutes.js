@@ -11,21 +11,19 @@ import ShopAllRefunds from "../pages/Shop/ShopAllRefunds";
 import ShopSettingsPage from "../pages/Shop/ShopSettingsPage";
 import ShopWithDrawMoneyPage from "../pages/Shop/ShopWithDrawMoneyPage";
 import ShopInboxPage from "../pages/Shop/ShopInboxPage";
-import ShopHomePage from "../pages/Shop/ShopHomePage";
 
 export {
-  ShopHomePage,
-  ShopDashboardPage,
-  ShopCreateProduct,
-  ShopAllProducts,
-  ShopCreateEvents,
-  ShopAllEvents,
-  ShopAllCoupouns,
-  ShopPreviewPage,
-  ShopAllOrders,
-  ShopOrderDetails,
-  ShopAllRefunds,
-  ShopSettingsPage,
-  ShopWithDrawMoneyPage,
-  ShopInboxPage,
-};
+    ShopDashboardPage,
+    ShopCreateProduct,
+    ShopAllProducts,
+    ShopCreateEvents,
+    ShopAllEvents,
+    ShopAllCoupouns,
+    ShopPreviewPage,
+    ShopAllOrders,
+    ShopOrderDetails,
+    ShopAllRefunds,
+    ShopSettingsPage,
+    ShopWithDrawMoneyPage,
+    ShopInboxPage
+}

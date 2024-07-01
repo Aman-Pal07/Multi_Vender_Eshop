@@ -23,7 +23,7 @@ const Header = ({ activeHeading }) => {
   const { isSeller } = useSelector((state) => state.seller);
   const { wishlist } = useSelector((state) => state.wishlist);
   const { cart } = useSelector((state) => state.cart);
-  const { allProducts } = useSelector((state) => state.products);
+  const {allProducts} = useSelector((state) => state.products);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
@@ -36,11 +36,9 @@ const Header = ({ activeHeading }) => {
     const term = e.target.value;
     setSearchTerm(term);
 
-    const filteredProducts =
-      allProducts &&
-      allProducts.filter((product) =>
-        product.name.toLowerCase().includes(term.toLowerCase())
-      );
+    const filteredProducts = allProducts && allProducts.filter((product) =>
+      product.name.toLowerCase().includes(term.toLowerCase())
+    );
     setSearchData(filteredProducts);
   };
 
@@ -99,10 +97,9 @@ const Header = ({ activeHeading }) => {
           </div>
 
           <div className={`${styles.button}`}>
-            <Link to={`${isSeller ? "/dashboard" : "/shop-create"}`}>
+            <Link to={`${isSeller ? '/dashboard' : '/shop-create'}`}>
               <h1 className="text-[#fff] flex items-center">
-                {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
-                <IoIosArrowForward className="ml-1" />
+               {isSeller ? "Go Dashboard" : "Become Seller"}  <IoIosArrowForward className="ml-1" />
               </h1>
             </Link>
           </div>
@@ -177,7 +174,7 @@ const Header = ({ activeHeading }) => {
                   <Link to="/profile">
                     <img
                       src={`${backend_url}${user.avatar}`}
-                      className="w-[35px] h-[35px] rounded-full object-cover"
+                      className="w-[35px] h-[35px] rounded-full"
                       alt=""
                     />
                   </Link>
@@ -227,8 +224,8 @@ const Header = ({ activeHeading }) => {
           <div>
             <div className="relative mr-[20px]">
               <AiOutlineShoppingCart size={30} />
-              <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
-                {cart && cart.length}
+              <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
+              {cart && cart.length}
               </span>
             </div>
           </div>
@@ -244,7 +241,7 @@ const Header = ({ activeHeading }) => {
                 <div>
                   <div className="relative mr-[15px]">
                     <AiOutlineHeart size={30} className="mt-5 ml-3" />
-                    <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
+                    <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
                       0
                     </span>
                   </div>
@@ -291,8 +288,7 @@ const Header = ({ activeHeading }) => {
               <div className={`${styles.button} ml-4 !rounded-[4px]`}>
                 <Link to="/shop-create">
                   <h1 className="text-[#fff] flex items-center">
-                    {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
-                    <IoIosArrowForward className="ml-1" />
+                    Become Seller <IoIosArrowForward className="ml-1" />
                   </h1>
                 </Link>
               </div>
@@ -307,7 +303,7 @@ const Header = ({ activeHeading }) => {
                       <img
                         src={`${backend_url}${user.avatar}`}
                         alt=""
-                        className="w-[60px] h-[60px] rounded-full border-[3px] border-[#0eae88] object-cover"
+                        className="w-[60px] h-[60px] rounded-full border-[3px] border-[#0eae88]"
                       />
                     </Link>
                   </div>

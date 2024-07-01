@@ -24,32 +24,26 @@ const EventCard = ({ active, data }) => {
         toast.success("Item added to cart successfully!");
       }
     }
-  };
+  }
   return (
     <div
-      className={`w-full block bg-white rounded-lg shadow-lg   ${
+      className={`w-full block bg-white rounded-lg ${
         active ? "unset" : "mb-12"
-      } lg:flex p-5 `}
+      } lg:flex p-2`}
     >
-      <div className="w-full lg:w-[50%] m-auto">
-        <img
-          src={`${backend_url}${data?.images[0]}`}
-          alt=""
-          className="rounded-lg w-full h-full object-cover"
-        />
+      <div className="w-full lg:-w[50%] m-auto">
+        <img src={`${backend_url}${data.images[0]}`} alt="" />
       </div>
-      <div className="w-full lg:w-[50%] flex flex-col justify-center p-5">
-        <h2 className={`${styles.productTitle} text-2xl font-bold mb-3`}>
-          {data?.name}
-        </h2>
-        <p className="text-gray-700 mb-4">{data?.description}</p>
-        <div className="flex py-2 justify-between items-center">
-          <div className="flex items-center">
+      <div className="w-full lg:[w-50%] flex flex-col justify-center">
+        <h2 className={`${styles.productTitle}`}>{data.name}</h2>
+        <p>{data.description}</p>
+        <div className="flex py-2 justify-between">
+          <div className="flex">
             <h5 className="font-[500] text-[18px] text-[#d55b45] pr-3 line-through">
-              {data?.originalPrice}$
+              {data.originalPrice}$
             </h5>
             <h5 className="font-bold text-[20px] text-[#333] font-Roboto">
-              {data?.discountPrice}$
+              {data.discountPrice}$
             </h5>
           </div>
           <span className="pr-3 font-[400] text-[17px] text-[#44a55e]">
@@ -62,12 +56,7 @@ const EventCard = ({ active, data }) => {
           <Link to={`/product/${data._id}?isEvent=true`}>
             <div className={`${styles.button} text-[#fff]`}>See Details</div>
           </Link>
-          <div
-            className={`${styles.button} text-[#fff] ml-5`}
-            onClick={() => addToCartHandler(data)}
-          >
-            Add to cart
-          </div>
+          <div className={`${styles.button} text-[#fff] ml-5`} onClick={() => addToCartHandler(data)}>Add to cart</div>
         </div>
       </div>
     </div>
